@@ -1,0 +1,16 @@
+langchain>=0.3
+langchain-openai
+openai
+fastapi
+uvicorn[standard]
+sqlalchemy>=2.0
+pymysql
+pydantic-settings
+streamlit
+plotly
+pandas
+sqlparse
+python-dotenv
+pytest
+pytest-asyncio
+httpx
