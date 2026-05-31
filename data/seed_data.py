@@ -77,15 +77,17 @@ def seed():
                 "INSERT INTO products (id, sku_name, category, mrp) VALUES (:id, :sku, :cat, :mrp)"
             ), {"id": i, "sku": sku, "cat": CATEGORIES[sku], "mrp": MRP[sku]})
 
-        # Seed sales (2 years of data)
-        start_date = date(2023, 1, 1)
+        # Seed sales (rolling 2-year window ending today)
+        end_date = date.today()
+        start_date = end_date - timedelta(days=730)
+        date_range = (end_date - start_date).days
         records = []
         for _ in range(20000):
             dist_id = random.randint(1, 20)
             prod_id = random.randint(1, 10)
             sku = SKUS[prod_id - 1]
             qty = random.randint(1, 200)
-            sale_date = start_date + timedelta(days=random.randint(0, 730))
+            sale_date = start_date + timedelta(days=random.randint(0, date_range))
             revenue = round(qty * MRP[sku] * random.uniform(0.8, 0.95), 2)
             records.append({"dist_id": dist_id, "prod_id": prod_id, "date": sale_date, "qty": qty, "rev": revenue})
 

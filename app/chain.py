@@ -15,6 +15,7 @@ Rules:
 - If a question is ambiguous, make a reasonable assumption and write the query.
 - Return ONLY the raw SQL query with no explanation, no markdown, no code fences.
 - Always add a LIMIT clause if the user does not specify one (default LIMIT 100).
+- The sales data covers a rolling 2-year window ending on today's date (CURDATE()). Use CURDATE() and date functions for relative time filters like "this year", "last month", etc.
 
 Schema:
 {schema}
